@@ -35,7 +35,7 @@ Next steps will focus on integrating weather data and expanding compliance cover
 - Optional: View the HTML export in `docs/` for a static snapshot.
 
 
- “This dashboard enables agricultural enterprises to proactively manage risk, strengthen resilience, and ensure continuity across supply chains.”
+ This dashboard enables agricultural enterprises to proactively manage risk, strengthen resilience, and ensure continuity across supply chains.
  
 
  
