@@ -34,6 +34,8 @@ It tracks likelihood, impact, treatment status, and control ownership across **3
 - Screenshots highlight supplier risk exposure, operational bottlenecks, compliance gaps, and vendor performance. 
 - Use the README descriptions alongside the visuals to understand how risks are tracked and managed.  
 
+
+
  This dashboard enables agricultural enterprises to proactively manage risk, strengthen resilience, and ensure continuity across supply chains.
  
 ---
