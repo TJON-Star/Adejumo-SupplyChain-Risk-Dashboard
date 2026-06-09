@@ -1,4 +1,4 @@
-# Adejumo Agro Group — Supply Chain & Operational Risk Dashboard
+# Adejumo Agro Group - Supply Chain & Operational Risk Dashboard
 
 > *Turning risk data into resilience across the agricultural supply chain.*
 
