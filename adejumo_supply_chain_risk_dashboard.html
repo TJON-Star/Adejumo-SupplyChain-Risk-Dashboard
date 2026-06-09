@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adejumo Agro Group — Supply Chain & Operational Risk Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #0f1117;
+    --surface: #181c27;
+    --surface2: #1e2335;
+    --border: rgba(255,255,255,0.07);
+    --text: #e8eaf0;
+    --muted: #7b82a0;
+    --critical: #e05252;
+    --high: #e8923a;
+    --medium: #d4b942;
+    --low: #4caf82;
+    --accent: #5b8af5;
+    --supply: #7c6af0;
+    --agri: #4caf82;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+
+  .page { max-width: 1200px; margin: 0 auto; padding: 28px 24px; }
+
+  /* HEADER */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .header-left {}
+  .org-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .dash-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -0.3px;
+  }
+  .dash-sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+  }
+  .header-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+  .badge-conf { background: rgba(91,138,245,0.15); color: var(--accent); border: 1px solid rgba(91,138,245,0.3); }
+  .badge-period { background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--border); }
+
+  /* FILTERS */
+  .filter-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .filter-label { font-size: 11px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+  select {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 11px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+  }
+  select:focus { border-color: var(--accent); }
+  .filter-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    margin-left: 4px;
+  }
+
+  /* KPI ROW */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .kpi {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+  .kpi-total::before { background: var(--accent); }
+  .kpi-critical::before { background: var(--critical); }
+  .kpi-high::before { background: var(--high); }
+  .kpi-open::before { background: var(--critical); }
+  .kpi-incident::before { background: var(--low); }
+  .kpi-label {
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 6px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .kpi-value {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+  .kpi-sub { font-size: 10px; color: var(--muted); margin-top: 5px; }
+  .kpi-delta {
+    font-size: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 4px;
+  }
+  .delta-good { color: var(--low); }
+  .delta-bad { color: var(--critical); }
+
+  /* CHART GRID */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+  }
+  .card-title {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 14px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .chart-wrap { position: relative; width: 100%; }
+
+  /* LEGEND */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .leg {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    color: var(--muted);
+  }
+  .leg-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .leg-sq { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+
+  /* INCIDENT SECTION */
+  .incident-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+  .incident-stat {
+    background: var(--surface2);
+    border-radius: 8px;
+    padding: 12px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .is-label { font-size: 11px; color: var(--muted); }
+  .is-value { font-size: 16px; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+
+  /* RISK TABLE */
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+  th {
+    text-align: left;
+    padding: 8px 10px;
+    color: var(--muted);
+    font-weight: 500;
+    border-bottom: 1px solid var(--border);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    vertical-align: middle;
+    color: var(--text);
+  }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+  .risk-id {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  .badge {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .b-critical { background: rgba(224,82,82,0.15); color: #f07070; border: 1px solid rgba(224,82,82,0.25); }
+  .b-high { background: rgba(232,146,58,0.15); color: #e8a060; border: 1px solid rgba(232,146,58,0.25); }
+  .b-medium { background: rgba(212,185,66,0.15); color: #d4c060; border: 1px solid rgba(212,185,66,0.25); }
+  .b-low { background: rgba(76,175,130,0.15); color: #5fc898; border: 1px solid rgba(76,175,130,0.25); }
+  .b-open { background: rgba(224,82,82,0.12); color: #e07070; border: 1px solid rgba(224,82,82,0.2); }
+  .b-progress { background: rgba(232,146,58,0.12); color: #d49050; border: 1px solid rgba(232,146,58,0.2); }
+  .b-monitor { background: rgba(91,138,245,0.12); color: #7090e8; border: 1px solid rgba(91,138,245,0.2); }
+  .b-closed { background: rgba(76,175,130,0.12); color: #50b880; border: 1px solid rgba(76,175,130,0.2); }
+
+  .score-cell {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 12px;
+  }
+
+  /* VENDOR SECTION */
+  .vendor-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .vendor-card {
+    background: var(--surface2);
+    border-radius: 8px;
+    padding: 10px 12px;
+    border-left: 3px solid transparent;
+  }
+  .vendor-name { font-size: 11px; font-weight: 500; margin-bottom: 4px; color: #fff; }
+  .vendor-score { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 700; }
+  .vendor-label { font-size: 10px; color: var(--muted); margin-top: 2px; }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-left { font-size: 10px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+  .footer-right { font-size: 10px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <div class="org-tag">Adejumo Agro Group // GRC Division</div>
+      <div class="dash-title">Supply Chain & Operational Risk Dashboard</div>
+      <div class="dash-sub">3 farms · 2 operational sites · 1 central warehouse · 27 employees · 20–50 active vendors</div>
+    </div>
+    <div class="header-right">
+      <span class="header-badge badge-conf">Confidential</span>
+      <span class="header-badge badge-period">Period: FY 2020–2024</span>
+      <span class="header-badge badge-conf" style="background:rgba(76,175,130,0.1);color:#5fc898;border-color:rgba(76,175,130,0.3);">GRC Lead: Taiwo Johnson</span>
+    </div>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="filter-bar">
+    <span class="filter-label">filter:</span>
+    <select id="fRating" onchange="applyFilters()">
+      <option value="All">all ratings</option>
+      <option value="Critical">critical</option>
+      <option value="High">high</option>
+      <option value="Medium">medium</option>
+      <option value="Low">low</option>
+    </select>
+    <select id="fCat" onchange="applyFilters()">
+      <option value="All">all categories</option>
+      <option value="Operational">operational</option>
+      <option value="Supply Chain">supply chain</option>
+      <option value="Transportation">transportation</option>
+      <option value="Inventory">inventory</option>
+      <option value="Agricultural">agricultural</option>
+      <option value="Compliance">compliance</option>
+      <option value="Business Continuity">business continuity</option>
+      <option value="Third Party">third party</option>
+    </select>
+    <select id="fStatus" onchange="applyFilters()">
+      <option value="All">all statuses</option>
+      <option value="Open">open</option>
+      <option value="In Progress">in progress</option>
+      <option value="Monitor">monitor</option>
+      <option value="Closed">closed</option>
+    </select>
+    <span class="filter-count" id="fCount">32 risks shown</span>
+  </div>
+
+  <!-- KPI ROW -->
+  <div class="kpi-row">
+    <div class="kpi kpi-total">
+      <div class="kpi-label">Total Risks</div>
+      <div class="kpi-value" id="kTotal" style="color:#fff;">32</div>
+      <div class="kpi-sub">across 8 categories</div>
+    </div>
+    <div class="kpi kpi-critical">
+      <div class="kpi-label">Critical</div>
+      <div class="kpi-value" id="kCrit" style="color:var(--critical);">6</div>
+      <div class="kpi-sub">act immediately</div>
+    </div>
+    <div class="kpi kpi-high">
+      <div class="kpi-label">High</div>
+      <div class="kpi-value" id="kHigh" style="color:var(--high);">10</div>
+      <div class="kpi-sub">remediate within 30 days</div>
+    </div>
+    <div class="kpi kpi-open">
+      <div class="kpi-label">Open</div>
+      <div class="kpi-value" id="kOpen" style="color:var(--critical);">14</div>
+      <div class="kpi-sub">require owner action</div>
+    </div>
+    <div class="kpi kpi-incident">
+      <div class="kpi-label">Incident Reduction</div>
+      <div class="kpi-value" style="color:var(--low);">35%</div>
+      <div class="kpi-sub delta-good">↓ via preventive controls</div>
+    </div>
+  </div>
+
+  <!-- ROW 1: HEAT MAP + CATEGORY BAR -->
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Risk Heat Map — Likelihood × Impact</div>
+      <div class="legend">
+        <span class="leg"><span class="leg-dot" style="background:var(--critical)"></span>Critical</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--high)"></span>High</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--medium)"></span>Medium</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--low)"></span>Low</span>
+      </div>
+      <div class="chart-wrap" style="height:240px;"><canvas id="scatterChart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Risk Count by Category</div>
+      <div class="chart-wrap" style="height:265px;"><canvas id="catBar"></canvas></div>
+    </div>
+  </div>
+
+  <!-- ROW 2: STATUS DONUT + RATING BAR + COST IMPACT -->
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-title">Treatment Status</div>
+      <div class="legend">
+        <span class="leg"><span class="leg-dot" style="background:var(--critical)"></span>Open (14)</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--high)"></span>In Progress (10)</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--accent)"></span>Monitor (4)</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--low)"></span>Closed (4)</span>
+      </div>
+      <div class="chart-wrap" style="height:185px;"><canvas id="donutChart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Risk Score Distribution</div>
+      <div class="chart-wrap" style="height:215px;"><canvas id="ratingBar"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Incident Cost Reduction (₦)</div>
+      <div class="chart-wrap" style="height:180px;"><canvas id="costBar"></canvas></div>
+      <div class="incident-grid" style="margin-top:12px;">
+        <div class="incident-stat">
+          <span class="is-label">Before controls</span>
+          <span class="is-value" style="color:var(--critical);">₦2M</span>
+        </div>
+        <div class="incident-stat">
+          <span class="is-label">After controls</span>
+          <span class="is-value" style="color:var(--low);">₦950k</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 3: VENDOR RISK SCORES -->
+  <div class="card" style="margin-bottom:14px;">
+    <div class="card-title">Vendor Risk Scoring Matrix — Top 12 Vendors (Anonymised)</div>
+    <div class="vendor-grid" id="vendorGrid"></div>
+  </div>
+
+  <!-- ROW 4: FULL RISK REGISTER TABLE -->
+  <div class="card">
+    <div class="card-title" style="margin-bottom:14px;">Operational & Supply Chain Risk Register</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Risk Description</th>
+            <th>Category</th>
+            <th>L</th>
+            <th>I</th>
+            <th>Score</th>
+            <th>Rating</th>
+            <th>Status</th>
+            <th>Control Owner</th>
+            <th>Treatment</th>
+          </tr>
+        </thead>
+        <tbody id="riskBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">Adejumo Agro Group // GRC Division // FY 2020–2024 // v1.0</div>
+    <div class="footer-right">Framework: ISO 31000 · NIST RMF · BCM Best Practice</div>
+  </div>
+
+</div>
+
+<script>
+const risks = [
+  // OPERATIONAL
+  {id:'OP-001',desc:'Equipment breakdown disrupts production',cat:'Operational',l:4,i:4,score:16,rating:'Critical',status:'In Progress',owner:'Operations Manager',treatment:'Preventive maintenance schedule; backup equipment procurement'},
+  {id:'OP-002',desc:'Staff shortages during peak harvest season',cat:'Operational',l:3,i:4,score:12,rating:'High',status:'In Progress',owner:'HR Lead',treatment:'Seasonal staffing plan; cross-training program'},
+  {id:'OP-003',desc:'Process failures in production workflow',cat:'Operational',l:3,i:3,score:9,rating:'Medium',status:'Monitor',owner:'Operations Manager',treatment:'SOP documentation; process audit quarterly'},
+  {id:'OP-004',desc:'Production disruption from site incident',cat:'Operational',l:2,i:5,score:10,rating:'High',status:'Open',owner:'Site Manager',treatment:'Incident response plan; site resilience review'},
+  // SUPPLY CHAIN
+  {id:'SC-001',desc:'Vendor delays impact planting/harvest cycles',cat:'Supply Chain',l:4,i:5,score:20,rating:'Critical',status:'Open',owner:'Procurement Lead',treatment:'Dual sourcing strategy; SLA enforcement'},
+  {id:'SC-002',desc:'Single source supplier dependency — fertilizer',cat:'Supply Chain',l:3,i:5,score:15,rating:'Critical',status:'In Progress',owner:'Procurement Lead',treatment:'Identify 2 alternative suppliers per critical input'},
+  {id:'SC-003',desc:'Fertilizer shortages during growing season',cat:'Supply Chain',l:3,i:4,score:12,rating:'High',status:'Open',owner:'Procurement Lead',treatment:'Strategic stockpiling; forward purchasing contracts'},
+  {id:'SC-004',desc:'Seed shortages affecting planting schedule',cat:'Supply Chain',l:2,i:4,score:8,rating:'Medium',status:'Monitor',owner:'Agronomy Lead',treatment:'Pre-season seed procurement; seed bank maintenance'},
+  // TRANSPORTATION
+  {id:'TR-001',desc:'Delivery delays to market or distribution points',cat:'Transportation',l:4,i:4,score:16,rating:'Critical',status:'Open',owner:'Logistics Coordinator',treatment:'Route diversification; backup transport agreements'},
+  {id:'TR-002',desc:'Fuel price volatility increases operational cost',cat:'Transportation',l:4,i:3,score:12,rating:'High',status:'Monitor',owner:'Finance Lead',treatment:'Fuel hedging; efficient route planning'},
+  {id:'TR-003',desc:'Vehicle downtime reduces delivery capacity',cat:'Transportation',l:3,i:3,score:9,rating:'Medium',status:'In Progress',owner:'Fleet Manager',treatment:'Preventive vehicle maintenance schedule'},
+  {id:'TR-004',desc:'Route disruption from road or security issues',cat:'Transportation',l:2,i:4,score:8,rating:'Medium',status:'Open',owner:'Logistics Coordinator',treatment:'Alternative route mapping; security briefings'},
+  // INVENTORY
+  {id:'IN-001',desc:'Stock-outs disrupt order fulfilment',cat:'Inventory',l:3,i:4,score:12,rating:'High',status:'Open',owner:'Warehouse Manager',treatment:'Reorder point system; safety stock levels defined'},
+  {id:'IN-002',desc:'Overstocking leads to spoilage and capital tie-up',cat:'Inventory',l:3,i:3,score:9,rating:'Medium',status:'In Progress',owner:'Warehouse Manager',treatment:'Inventory turnover monitoring; FIFO policy'},
+  {id:'IN-003',desc:'Warehouse losses from theft or damage',cat:'Inventory',l:2,i:4,score:8,rating:'Medium',status:'Closed',owner:'Warehouse Manager',treatment:'CCTV installed; access controls; stock counts weekly'},
+  {id:'IN-004',desc:'Spoilage of perishable produce in storage',cat:'Inventory',l:3,i:4,score:12,rating:'High',status:'Open',owner:'Warehouse Manager',treatment:'Cold chain management; storage condition monitoring'},
+  // AGRICULTURAL
+  {id:'AG-001',desc:'Adverse weather impact on crop yield',cat:'Agricultural',l:4,i:5,score:20,rating:'Critical',status:'Open',owner:'Agronomy Lead',treatment:'Weather monitoring; crop insurance; irrigation backup'},
+  {id:'AG-002',desc:'Pest outbreak destroys standing crop',cat:'Agricultural',l:3,i:5,score:15,rating:'Critical',status:'In Progress',owner:'Agronomy Lead',treatment:'Integrated pest management; early detection monitoring'},
+  {id:'AG-003',desc:'Disease outbreak spreads across farm sites',cat:'Agricultural',l:2,i:5,score:10,rating:'High',status:'Open',owner:'Agronomy Lead',treatment:'Disease surveillance; quarantine protocols per site'},
+  {id:'AG-004',desc:'Yield reduction below breakeven threshold',cat:'Agricultural',l:3,i:4,score:12,rating:'High',status:'Monitor',owner:'Farm Director',treatment:'Diversified crop portfolio; yield benchmarking'},
+  // COMPLIANCE
+  {id:'CO-001',desc:'Documentation gaps expose organisation to regulatory action',cat:'Compliance',l:3,i:4,score:12,rating:'High',status:'Closed',owner:'GRC Lead',treatment:'Document control system implemented; quarterly review'},
+  {id:'CO-002',desc:'Audit findings from regulatory inspections',cat:'Compliance',l:2,i:4,score:8,rating:'Medium',status:'Closed',owner:'GRC Lead',treatment:'Pre-audit readiness checklist; findings tracker'},
+  {id:'CO-003',desc:'Policy violations by staff or contractors',cat:'Compliance',l:2,i:3,score:6,rating:'Low',status:'Monitor',owner:'HR Lead',treatment:'Policy awareness training; annual sign-off'},
+  // BUSINESS CONTINUITY
+  {id:'BC-001',desc:'Site disruption renders farm or warehouse inoperable',cat:'Business Continuity',l:2,i:5,score:10,rating:'High',status:'In Progress',owner:'COO',treatment:'BCP documented; alternate site identified'},
+  {id:'BC-002',desc:'Power outages halt operations across sites',cat:'Business Continuity',l:4,i:3,score:12,rating:'High',status:'In Progress',owner:'Facilities Lead',treatment:'Generator backup at all 3 farm sites; fuel reserve policy'},
+  {id:'BC-003',desc:'Critical supplier failure stops production inputs',cat:'Business Continuity',l:2,i:5,score:10,rating:'High',status:'Open',owner:'Procurement Lead',treatment:'Supplier diversification; emergency procurement protocol'},
+  // THIRD PARTY
+  {id:'TP-001',desc:'Vendor performance failure impacts operations',cat:'Third Party',l:3,i:4,score:12,rating:'High',status:'In Progress',owner:'Procurement Lead',treatment:'Vendor scorecards; quarterly performance reviews'},
+  {id:'TP-002',desc:'Supplier concentration risk — single market dependency',cat:'Third Party',l:3,i:4,score:12,rating:'High',status:'Open',owner:'Procurement Lead',treatment:'Market diversification strategy; alternative buyer list'},
+  {id:'TP-003',desc:'Contract compliance failures by vendors',cat:'Third Party',l:2,i:3,score:6,rating:'Low',status:'Closed',owner:'Legal / Procurement',treatment:'Contract management register; renewal alerts'},
+  {id:'TP-004',desc:'Vendor security maturity insufficient for data sharing',cat:'Third Party',l:2,i:4,score:8,rating:'Medium',status:'Open',owner:'GRC Lead',treatment:'Vendor security questionnaire; annual reassessment'},
+  {id:'OP-005',desc:'Communication breakdown across multi-site operations',cat:'Operational',l:3,i:3,score:9,rating:'Medium',status:'In Progress',owner:'Operations Manager',treatment:'Communication protocol; site leads WhatsApp coordination'},
+  {id:'SC-005',desc:'Market price collapse reduces revenue per harvest',cat:'Supply Chain',l:3,i:4,score:12,rating:'High',status:'Monitor',owner:'Farm Director',treatment:'Forward contracts; market intelligence monitoring'},
+];
+
+const vendors = [
+  {name:'Vendor A — Fertilizer Supplier',score:72,rating:'Medium',color:'var(--medium)'},
+  {name:'Vendor B — Seed Supplier',score:85,rating:'Low',color:'var(--low)'},
+  {name:'Vendor C — Transport Provider',score:58,rating:'High',color:'var(--high)'},
+  {name:'Vendor D — Equipment Hire',score:64,rating:'Medium',color:'var(--medium)'},
+  {name:'Vendor E — Pesticide Supplier',score:79,rating:'Low',color:'var(--low)'},
+  {name:'Vendor F — Packaging Supplier',score:45,rating:'High',color:'var(--high)'},
+  {name:'Vendor G — Logistics Broker',score:52,rating:'High',color:'var(--high)'},
+  {name:'Vendor H — Cold Storage',score:88,rating:'Low',color:'var(--low)'},
+  {name:'Vendor I — Fuel Supplier',score:61,rating:'Medium',color:'var(--medium)'},
+  {name:'Vendor J — Maintenance Co.',score:39,rating:'Critical',color:'var(--critical)'},
+  {name:'Vendor K — Market Agent',score:67,rating:'Medium',color:'var(--medium)'},
+  {name:'Vendor L — Security Services',score:74,rating:'Low',color:'var(--low)'},
+];
+
+const rColors = {Critical:'var(--critical)',High:'var(--high)',Medium:'var(--medium)',Low:'var(--low)'};
+const rBadge = {Critical:'b-critical',High:'b-high',Medium:'b-medium',Low:'b-low'};
+const sBadge = {Open:'b-open','In Progress':'b-progress',Monitor:'b-monitor',Closed:'b-closed'};
+
+let filtered = [...risks];
+
+function badgeRating(r){return`<span class="badge ${rBadge[r]}">${r}</span>`;}
+function badgeStatus(s){return`<span class="badge ${sBadge[s]||'b-monitor'}">${s}</span>`;}
+
+function scoreColor(s,r){
+  if(r==='Critical') return 'var(--critical)';
+  if(r==='High') return 'var(--high)';
+  if(r==='Medium') return 'var(--medium)';
+  return 'var(--low)';
+}
+
+function renderTable(data){
+  document.getElementById('riskBody').innerHTML = data.map(r=>`
+    <tr>
+      <td class="risk-id">${r.id}</td>
+      <td style="max-width:200px;">${r.desc}</td>
+      <td><span style="font-size:10px;color:var(--muted)">${r.cat}</span></td>
+      <td style="text-align:center;font-family:'JetBrains Mono',monospace;">${r.l}</td>
+      <td style="text-align:center;font-family:'JetBrains Mono',monospace;">${r.i}</td>
+      <td class="score-cell" style="text-align:center;color:${scoreColor(r.score,r.rating)}">${r.score}</td>
+      <td>${badgeRating(r.rating)}</td>
+      <td>${badgeStatus(r.status)}</td>
+      <td style="font-size:10px;color:var(--muted);white-space:nowrap;">${r.owner}</td>
+      <td style="font-size:10px;color:var(--muted);max-width:180px;">${r.treatment}</td>
+    </tr>`).join('');
+}
+
+function updateKPIs(data){
+  document.getElementById('kTotal').textContent = data.length;
+  document.getElementById('kCrit').textContent = data.filter(r=>r.rating==='Critical').length;
+  document.getElementById('kHigh').textContent = data.filter(r=>r.rating==='High').length;
+  document.getElementById('kOpen').textContent = data.filter(r=>r.status==='Open').length;
+  document.getElementById('fCount').textContent = `${data.length} risks shown`;
+}
+
+function applyFilters(){
+  const rat = document.getElementById('fRating').value;
+  const cat = document.getElementById('fCat').value;
+  const stat = document.getElementById('fStatus').value;
+  filtered = risks.filter(r=>
+    (rat==='All'||r.rating===rat) &&
+    (cat==='All'||r.cat===cat) &&
+    (stat==='All'||r.status===stat)
+  );
+  renderTable(filtered);
+  updateKPIs(filtered);
+}
+
+renderTable(risks);
+updateKPIs(risks);
+
+// VENDOR CARDS
+document.getElementById('vendorGrid').innerHTML = vendors.map(v=>`
+  <div class="vendor-card" style="border-left-color:${v.color}">
+    <div class="vendor-name">${v.name}</div>
+    <div class="vendor-score" style="color:${v.color}">${v.score}<span style="font-size:11px;color:var(--muted)">/100</span></div>
+    <div class="vendor-label">${v.rating} risk vendor</div>
+  </div>`).join('');
+
+// SCATTER
+new Chart(document.getElementById('scatterChart'),{
+  type:'bubble',
+  data:{datasets:[
+    {label:'Critical',data:risks.filter(r=>r.rating==='Critical').map(r=>({x:r.l,y:r.i,r:Math.max(r.score/3.5,5)})),backgroundColor:'rgba(224,82,82,0.7)',borderColor:'#e05252',borderWidth:1.5},
+    {label:'High',data:risks.filter(r=>r.rating==='High').map(r=>({x:r.l,y:r.i,r:Math.max(r.score/3.5,5)})),backgroundColor:'rgba(232,146,58,0.7)',borderColor:'#e8923a',borderWidth:1.5},
+    {label:'Medium',data:risks.filter(r=>r.rating==='Medium').map(r=>({x:r.l,y:r.i,r:Math.max(r.score/3.5,5)})),backgroundColor:'rgba(212,185,66,0.65)',borderColor:'#d4b942',borderWidth:1.5},
+    {label:'Low',data:risks.filter(r=>r.rating==='Low').map(r=>({x:r.l,y:r.i,r:Math.max(r.score/3.5,5)})),backgroundColor:'rgba(76,175,130,0.7)',borderColor:'#4caf82',borderWidth:1.5},
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>`${c.dataset.label} | L:${c.raw.x} × I:${c.raw.y}`}}},
+    scales:{
+      x:{min:0,max:6,title:{display:true,text:'Likelihood',color:'#7b82a0',font:{size:10}},grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#7b82a0',stepSize:1,font:{size:9}}},
+      y:{min:0,max:6,title:{display:true,text:'Impact',color:'#7b82a0',font:{size:10}},grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#7b82a0',stepSize:1,font:{size:9}}}
+    }}
+});
+
+// CATEGORY BAR
+const cats = ['Supply Chain','Agricultural','Operational','Transportation','Third Party','Inventory','Business Continuity','Compliance'];
+const catColors = ['#7c6af0','#4caf82','#5b8af5','#e8923a','#e05252','#d4b942','#4cb8c4','#c47baf'];
+new Chart(document.getElementById('catBar'),{
+  type:'bar',
+  data:{
+    labels:cats,
+    datasets:[{data:cats.map(c=>risks.filter(r=>r.cat===c).length),backgroundColor:catColors,borderRadius:4,borderSkipped:false}]
+  },
+  options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>`${c.raw} risks`}}},
+    scales:{
+      x:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#7b82a0',stepSize:1,font:{size:9}},title:{display:true,text:'Number of risks',color:'#7b82a0',font:{size:9}}},
+      y:{grid:{display:false},ticks:{color:'#9ba4c0',font:{size:9}}}
+    }}
+});
+
+// DONUT
+new Chart(document.getElementById('donutChart'),{
+  type:'doughnut',
+  data:{labels:['Open','In Progress','Monitor','Closed'],datasets:[{data:[14,10,4,4],backgroundColor:['#e05252','#e8923a','#5b8af5','#4caf82'],borderColor:'#181c27',borderWidth:2,hoverOffset:4}]},
+  options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>`${c.label}: ${c.raw} risks`}}}}
+});
+
+// RATING BAR
+new Chart(document.getElementById('ratingBar'),{
+  type:'bar',
+  data:{labels:['Critical','High','Medium','Low'],datasets:[{data:[6,10,11,5],backgroundColor:['#e05252','#e8923a','#d4b942','#4caf82'],borderRadius:4,borderSkipped:false}]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false}},
+    scales:{
+      x:{grid:{display:false},ticks:{color:'#9ba4c0',font:{size:10}}},
+      y:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#7b82a0',stepSize:2,font:{size:9}},title:{display:true,text:'Count',color:'#7b82a0',font:{size:9}}}
+    }}
+});
+
+// COST BAR
+new Chart(document.getElementById('costBar'),{
+  type:'bar',
+  data:{
+    labels:['Before Controls','After Controls'],
+    datasets:[{data:[2000000,950000],backgroundColor:['rgba(224,82,82,0.7)','rgba(76,175,130,0.7)'],borderColor:['#e05252','#4caf82'],borderWidth:1.5,borderRadius:6,borderSkipped:false}]
+  },
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>`₦${(c.raw/1000000).toFixed(2)}M annual incident cost`}}},
+    scales:{
+      x:{grid:{display:false},ticks:{color:'#9ba4c0',font:{size:10}}},
+      y:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#7b82a0',font:{size:9},callback:(v)=>`₦${v/1000}k`}}
+    }}
+});
+</script>
+</body>
+</html>
