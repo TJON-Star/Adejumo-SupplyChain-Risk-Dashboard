@@ -1,3 +1,10 @@
+# Adejumo Agro Group — Supply Chain & Operational Risk Dashboard
+
+**Author:** Taiwo Johnson | GRC & Operational Risk Specialist  
+**Tools:** Power BI | Excel | ISO 31000 | NIST RMF | Supply Chain Risk Management  
+**Sector:** Agricultural Supply Chain | Fintech Operations
+
+
 📖 **Overview**
 
 The **Adejumo Agro Group Supply Chain & Operational Risk Dashboard** is a professional analytics tool designed to monitor, assess, and visualize risks across complex supply chain and operational environments. Built with **Power BI** and **Excel**, the dashboard empowers organizations to identify vulnerabilities, track supplier performance, and strengthen governance, risk, and compliance (GRC) workflows.
