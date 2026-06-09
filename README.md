@@ -24,10 +24,9 @@ It tracks likelihood, impact, treatment status, and control ownership across **3
 - Tools: Power BI, Excel, GitHub
 - Frameworks: ISO 31000, NIST RMF, BCM Best Practice
 
-  
-### 🚀 Future Work  
-Next steps will focus on integrating weather data and expanding compliance coverage.
-
+  ### 🚀 Future Work
+- Integrate weather data APIs for real‑time agricultural risk monitoring  
+- Expand compliance coverage to include food safety and logistics regulations  
 
 ### 📂 How to Use
 - Download the `.pbix` file from the `data/` folder.  
@@ -37,5 +36,6 @@ Next steps will focus on integrating weather data and expanding compliance cover
 
  This dashboard enables agricultural enterprises to proactively manage risk, strengthen resilience, and ensure continuity across supply chains.
  
+---
+💡 *Adejumo Agro Group Dashboard — turning risk data into resilience across the agricultural supply chain.*
 
- 
