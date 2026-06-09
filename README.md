@@ -9,8 +9,8 @@
 
 Built from 5 years of hands-on operational risk management experience at a multi-site agricultural business. This dashboard covers 32 risks across 8 categories including operational, supply chain, transportation, vendor, inventory, agricultural, compliance, and business continuity risk. It tracks likelihood, impact, treatment status, and control ownership across 3 farm sites, 2 operational locations, and 20 to 50 active vendors."
 
-Cut Future Work down to just these two points:
-
+**Future Work**
+Planned improvements include:  
 - Integrating weather data API for real-time agricultural risk monitoring
 - Adding vendor performance trend analysis over rolling 12-month periods
 
