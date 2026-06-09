@@ -16,11 +16,8 @@ Cut Future Work down to just these two points:
 
 
 🛠️ **Tech Stack**
-- **Power BI** - for interactive dashboards and advanced data visualization  
-- **Excel** - for structured datasets and preprocessing  
-- **GitHub** - for version control, collaboration, and documentation  
-- **Risk Management Frameworks** - ISO 27001:2022, PCI-DSS v4.0, NDPR  
-- **Supply Chain Risk Models** - applied to agricultural and operational contexts  
+- Tools: Power BI, Excel, GitHub
+- Frameworks: ISO 31000, NIST RMF, BCM Best Practice
 
 🚀 **Future Work**
 Planned improvements include:  
