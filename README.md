@@ -30,8 +30,8 @@ It tracks likelihood, impact, treatment status, and control ownership across **3
 
 
 ### 📁 How to Use
-- Browse the `images/` folder to view dashboard screenshots.  
-- Screenshots highlight supplier risk exposure, operational bottlenecks, compliance gaps, and vendor performance. 
+- Open the `images/` folder to view dashboard screenshots.  
+- Each screenshot highlights key areas: supplier risk exposure, operational bottlenecks, compliance gaps, and vendor performance.  
 - Use the README descriptions alongside the visuals to understand how risks are tracked and managed.  
 
 
