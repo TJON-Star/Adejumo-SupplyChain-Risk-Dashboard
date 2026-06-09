@@ -26,13 +26,13 @@ It tracks likelihood, impact, treatment status, and control ownership across **3
 
 ### 🚀 Future Work
 - Integrate weather data APIs for real‑time agricultural risk monitoring  
-- Expand compliance coverage to include food safety and logistics regulations  
+- Expand compliance coverage to include food safety and logistics regulations
 
-### 📂 How to Use
-- Download the `.pbix` file from the `data/` folder.  
-- Open with Power BI Desktop to explore interactive dashboards.  
-- Optional: View the HTML export in `docs/` for a static snapshot.
 
+### 📁 How to Use
+- Browse the `images/` folder to view dashboard screenshots.  
+- Screenshots highlight supplier risk exposure, operational bottlenecks, compliance gaps, and vendor performance. 
+- Use the README descriptions alongside the visuals to understand how risks are tracked and managed.  
 
  This dashboard enables agricultural enterprises to proactively manage risk, strengthen resilience, and ensure continuity across supply chains.
  
