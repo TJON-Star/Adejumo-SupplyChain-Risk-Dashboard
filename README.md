@@ -1,9 +1,9 @@
 🛠️ **Tech Stack**
-- **Power BI** — for interactive dashboards and advanced data visualization  
-- **Excel** — for structured datasets and preprocessing  
-- **GitHub** — for version control, collaboration, and documentation  
-- **Risk Management Frameworks** — ISO 27001:2022, PCI-DSS v4.0, NDPR  
-- **Supply Chain Risk Models** — applied to agricultural and operational contexts  
+- **Power BI** - for interactive dashboards and advanced data visualization  
+- **Excel** - for structured datasets and preprocessing  
+- **GitHub** - for version control, collaboration, and documentation  
+- **Risk Management Frameworks** - ISO 27001:2022, PCI-DSS v4.0, NDPR  
+- **Supply Chain Risk Models** - applied to agricultural and operational contexts  
 
 🚀 **Future Work**
 Planned improvements include:  
