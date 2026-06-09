@@ -24,7 +24,7 @@ It tracks likelihood, impact, treatment status, and control ownership across **3
 - Tools: Power BI, Excel, GitHub
 - Frameworks: ISO 31000, NIST RMF, BCM Best Practice
 
-  ### 🚀 Future Work
+### 🚀 Future Work
 - Integrate weather data APIs for real‑time agricultural risk monitoring  
 - Expand compliance coverage to include food safety and logistics regulations  
 
