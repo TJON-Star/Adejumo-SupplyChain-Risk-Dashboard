@@ -37,5 +37,5 @@ It tracks likelihood, impact, treatment status, and control ownership across **3
  This dashboard enables agricultural enterprises to proactively manage risk, strengthen resilience, and ensure continuity across supply chains.
  
 ---
-💡 *Adejumo Agro Group Dashboard — turning risk data into resilience across the agricultural supply chain.*
+💡 *Adejumo Agro Group Dashboard - turning risk data into resilience across the agricultural supply chain.*
 
