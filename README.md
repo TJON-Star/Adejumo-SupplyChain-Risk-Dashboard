@@ -1,4 +1,4 @@
-# Adejumo Agro Group — Supply Chain & Operational Risk Dashboard
+# Adejumo Agro Group - Supply Chain & Operational Risk Dashboard
 
 **Author:** Taiwo Johnson | GRC & Operational Risk Specialist  
 **Tools:** Power BI | Excel | ISO 31000 | NIST RMF | Supply Chain Risk Management  
