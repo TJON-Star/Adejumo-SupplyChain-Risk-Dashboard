@@ -2,7 +2,7 @@
 
 > *Turning risk data into resilience across the agricultural supply chain.*
 
-![Dashboard Preview](images/adejumo_supply_chain_risk.png)
+![Dashboard Preview](Supply%20chain%20%26%20operational%20risk%20dashboard.jpeg)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]()
 [![Made with Power BI](https://img.shields.io/badge/Tool-Power%20BI-orange)]()
@@ -39,10 +39,20 @@ ownership across **3 farm sites, 2 operational locations, and 20–50 active ven
 
 ---
 
+## 🖼️ Dashboard Visuals
+| File | Description |
+|---|---|
+| `Supply chain & operational risk dashboard.jpeg` | Full supply chain risk overview |
+| `Vendor Risk.jpeg` | Vendor risk exposure and supplier scoring |
+| `Operational risk and supply chain overview.jpeg` | Operational risk summary |
+| `adejumo_supply_chain_risk_dashboard.html` | Open in browser for interactive dashboard |
+
+---
+
 ## 🚀 How to Use
-1. Open `adejumo_supply_chain_risk.pbix` in **Power BI Desktop**
-2. Review the `Operational risk and supp...` Excel file for source data
-3. Browse the `images/` folder for dashboard screenshots
+1. Open `adejumo_supply_chain_risk_dashboard.html` in any **web browser** for the interactive dashboard
+2. Review the `Operational risk and supply chain overview.jpeg` for a snapshot of risk coverage
+3. Browse the image files for dashboard screenshots of key risk areas
 4. Use README descriptions alongside visuals to understand risk tracking
 
 ---
