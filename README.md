@@ -123,10 +123,10 @@ Vendors are scored 1-5 on each dimension. The weighted composite score produces 
 
 | Composite Score | Vendor Risk Rating | Review Frequency |
 |---|---|---|
-| 4.0-5.0 | 🟢 Low Risk | Annual review |
-| 3.0-3.9 | 🟡 Medium Risk | Semi-annual review |
-| 2.0-2.9 | 🟠 High Risk | Quarterly review + improvement plan |
-| 1.0-1.9 | 🔴 Critical Risk | Immediate escalation + alternative sourcing |
+| 1.0-1.5 | 🟢 Low Risk | Annual review |
+| 2.0-2.9 | 🟡 Medium Risk | Semi-annual review |
+| 3.0-3.9 | 🟠 High Risk | Quarterly review + improvement plan |
+| 4.0-5.0 | 🔴 Critical Risk | Immediate escalation + alternative sourcing |
 
 ---
 
