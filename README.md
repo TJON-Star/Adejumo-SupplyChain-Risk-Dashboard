@@ -109,26 +109,26 @@ All risks are scored using a **5×5 likelihood and impact matrix** producing a r
 
 ## 🤝 Vendor Risk Assessment
 
-The vendor ecosystem of 20-50 active suppliers is one of the highest-concentration risk areas in the Adejumo operation. Vendor risk is assessed across five dimensions:
+The vendor ecosystem of 20–50 active suppliers is one of the highest-concentration risk areas in the case study. Vendor risk is assessed across five dimensions:
 
 | Dimension | Weight | What It Measures |
-|---|---|---|
-| Reliability | 30% | On-time delivery rate, historical failure incidents |
-| Quality | 25% | Product/service quality consistency, rejection rates |
-| Financial Stability | 20% | Vendor financial health, signs of business distress |
-| Concentration | 15% | Proportion of total supply dependent on single vendor |
-| Compliance | 10% | Regulatory compliance, contractual adherence |
+|---|---:|---|
+| Reliability | 30% | On-time delivery rate and historical failure incidents |
+| Quality | 25% | Product/service quality consistency and rejection rates |
+| Financial Stability | 20% | Indicators of financial health or business distress |
+| Concentration | 15% | Dependency on a single vendor or limited supplier pool |
+| Compliance | 10% | Regulatory compliance and contractual adherence |
 
-Vendors are scored 1-5 on each dimension. The weighted composite score produces a vendor risk rating:
+Each vendor receives a weighted **0–100 vendor health score**, where a higher score indicates stronger performance and lower risk. The dashboard applies these bands consistently:
 
-| Composite Score | Vendor Risk Rating | Review Frequency |
-|---|---|---|
-| 1.0-1.9 | 🟢 Low Risk | Annual review |
-| 2.0-2.9 | 🟡 Medium Risk | Semi-annual review |
-| 3.0-3.9 | 🟠 High Risk | Quarterly review + improvement plan |
-| 4.0-5.0 | 🔴 Critical Risk | Immediate escalation + alternative sourcing |
+| Health Score | Vendor Risk Rating | Review Frequency |
+|---:|---|---|
+| 75–100 | Low | Annual review |
+| 60–74 | Medium | Semi-annual review |
+| 40–59 | High | Quarterly review + improvement plan |
+| 0–39 | Critical | Immediate escalation + alternative sourcing |
 
----
+This is a portfolio scoring model, not an audited supplier rating. In production, the scoring inputs would be tied to source evidence such as delivery performance, quality records, financial indicators, concentration exposure, and compliance evidence.
 
 ## 📐 5×5 Risk Matrix
 
@@ -207,7 +207,7 @@ The methodology demonstrates how an operational risk practitioner can structure 
 
 ## 🚀 How to Use
 
-1. Open `adejumo_supply_chain_risk_dashboard.html` in any web browser for the interactive dashboard
+1. Open the deployed GitHub Pages dashboard for the interactive view
 2. Review the `Operational risk and supply chain overview.jpeg` for a snapshot of risk coverage
 3. Browse `Vendor Risk.jpeg` for the vendor scoring matrix
 4. Use README descriptions alongside visuals to understand risk tracking methodology
