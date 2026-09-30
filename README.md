@@ -1,20 +1,20 @@
 # Adejumo Agro Group - Supply Chain & Operational Risk Dashboard
 
-> *32 risks. 8 categories. Built from 5 years of real operational risk management across farms, logistics, and vendors.*
+> *32 risks · 8 categories · portfolio case study based on operational risk experience across farms, logistics, and vendors.*
 
 ![Dashboard Preview](Supply%20chain%20%26%20operational%20risk%20dashboard.jpeg)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]()
 [![Made with Power BI](https://img.shields.io/badge/Tool-Power%20BI-orange)]()
 [![Framework: ISO 31000](https://img.shields.io/badge/Framework-ISO%2031000-blue)]()
-[![Framework: NIST RMF](https://img.shields.io/badge/Framework-NIST%20RMF-darkblue)]()
+[![Framework: NIST Cybersecurity Framework](https://img.shields.io/badge/Framework-NIST%20RMF-darkblue)]()
 
 ---
 
 ## 👤 Author
 **Taiwo Johnson** | GRC & Operational Risk Specialist
 Sector: Agricultural Supply Chain | Fintech Operations
-Tools: Power BI · Excel · ISO 31000 · NIST RMF · Supply Chain Risk Management
+Tools: Power BI · Excel · ISO 31000 · NIST Cybersecurity Framework · Supply Chain Risk Management
 
 ---
 
@@ -25,12 +25,12 @@ Adejumo Agro Group operates a multi-site agricultural enterprise across 3 farm s
 This dashboard was built to give operational and executive leadership visibility into the full risk landscape of a physical, multi-site business. It tracks **32 risks across 8 categories**, covering likelihood, impact, treatment status, and control ownership across the entire operation.
 
 Key outcomes from the risk management program this dashboard supports:
-- Annual incident costs reduced from ₦2M to ₦950k through preventive root-cause controls
+- Annual incident costs reduced from ₦2M to ₦950k in the case-study dataset, a 52.5% reduction
 - Vendor ecosystem risk reduced through structured scoring and quarterly performance reviews
-- 100% of required compliance evidence delivered ahead of audit deadlines across two audit cycles
-- 90% post-training pass rate across 12+ compliance training topics
+- 100% of required compliance evidence delivered ahead of audit deadlines across two audit cycles in the case-study dataset
+- 90% post-training pass rate across 12+ compliance training topics in the case-study dataset
 
-The insight the dashboard surfaces that most GRC tools miss: **6 of the highest-scoring risks sit in supply chain and agricultural categories - not in IT or cybersecurity.** Operational risk in a physical business looks different from fintech GRC, and this dashboard reflects that reality.
+The insight the dashboard surfaces that most GRC tools miss: **17 of the 32 risks are currently rated High or Critical, with the highest concentrations in supply chain, agricultural, transportation, and business-continuity exposure.** Operational risk in a physical business looks different from fintech GRC, and this dashboard reflects that reality.
 
 ---
 
@@ -52,7 +52,7 @@ The insight the dashboard surfaces that most GRC tools miss: **6 of the highest-
 
 1. Risk ratings reflect the operational environment at the time of assessment - seasonal risks (e.g., harvest-period agricultural risk) will be higher at certain points in the year
 2. Vendor risk scores are based on the active vendor ecosystem of 20-50 suppliers - the specific vendor mix changes, and scores should be updated when significant vendors are onboarded or offboarded
-3. Likelihood scores reflect the frequency observed over the 5-year operational period covered by this assessment - they are not forward-looking projections
+3. Likelihood scores reflect the frequency observed over the historical operational period represented by this case study - they are not forward-looking projections
 4. Impact scores reflect the financial and operational consequences experienced or estimated for Adejumo Agro Group specifically - they are not industry benchmarks
 5. The 32 risks documented represent significant operational risks - this is not an exhaustive inventory of every possible operational event
 6. Business continuity risk ratings assume current recovery capabilities - any reduction in backup resources, alternative supplier relationships, or staffing would increase residual risk ratings
@@ -184,7 +184,7 @@ The preventive control program implemented over the assessment period produced m
 
 Business continuity risk remains the area requiring the most attention - formal BCM documentation and tested recovery procedures are the priority for the next assessment period.
 
-No risks are currently rated Critical. 8 risks are rated High and are in active treatment. The trend across all risk categories is improving.
+2 risks are currently rated Critical, 15 High, 15 Medium, and 0 Low. Twelve risks are Open, 10 are In Progress, 6 are under Monitoring, and 4 are Closed. The overall posture is presented as Amber and improving based on the case-study treatment status.
 
 ---
 
@@ -199,6 +199,12 @@ No risks are currently rated Critical. 8 risks are rated High and are in active 
 
 ---
 
+## ⚠️ Portfolio Case Study Boundary
+
+This repository is a portfolio case study. The organisation, dashboard records, vendor scores, incident-cost figures, and other data presented here are simulated or anonymised for demonstration. They should not be interpreted as a current compliance position, audit result, certification, client engagement, or independent assurance opinion.
+
+The methodology demonstrates how an operational risk practitioner can structure risk identification, scoring, control ownership, treatment, vendor assessment, KRIs, and management reporting.
+
 ## 🚀 How to Use
 
 1. Open `adejumo_supply_chain_risk_dashboard.html` in any web browser for the interactive dashboard
@@ -210,18 +216,18 @@ No risks are currently rated Critical. 8 risks are rated High and are in active 
 
 ## 🛠️ Tech Stack
 
-- **Tools:** Power BI, Excel, GitHub
-- **Frameworks:** ISO 31000, NIST RMF, BCM Best Practice
+- **Tools:** Power BI, Excel, HTML/CSS/JavaScript, Chart.js, GitHub
+- **Frameworks:** ISO 31000, NIST Cybersecurity Framework, BCM Best Practice
 
 ---
 
 ## 🎓 Lessons Learned
 
 **1. Operational risk in physical businesses is underserved by standard GRC frameworks**
-Most GRC frameworks are written for technology and financial services environments. Applying ISO 31000 to an agricultural operation required significant adaptation - particularly for weather, crop, and logistics risks that have no direct equivalent in standard information security control libraries.
+Risk frameworks are often implemented differently depending on the operating environment. Applying ISO 31000 to an agricultural operation required significant adaptation - particularly for weather, crop, and logistics risks that have no direct equivalent in standard information security control libraries.
 
 **2. Risk categories must reflect the actual business - not the framework**
-The 8 categories in this dashboard were defined by mapping the actual operational activities of Adejumo Agro Group, not by copying a framework's taxonomy. Generic risk categories would have missed the specific exposure profile of a multi-site agricultural enterprise.
+The 8 categories in this case study were defined by mapping the actual operational activities of Adejumo Agro Group, not by copying a framework's taxonomy. Generic risk categories would have missed the specific exposure profile of a multi-site agricultural enterprise.
 
 **3. Vendor risk is the most dynamic risk category**
 The vendor ecosystem changed frequently - suppliers were onboarded and offboarded, performance varied seasonally, and new single-source dependencies emerged without formal review. The quarterly vendor review cadence was essential to keeping the risk register current.
@@ -230,7 +236,7 @@ The vendor ecosystem changed frequently - suppliers were onboarded and offboarde
 Before the dashboard, operational decisions about vendor relationships and inventory levels were made on intuition and experience. The heat map made risk concentration visible - management could see that vendor and supply chain risks clustered in the high-impact zone and responded by prioritising dual-sourcing.
 
 **5. Incident cost data is the most persuasive metric for operational leadership**
-Agricultural business owners respond to financial evidence more than risk scores. Showing that preventive controls reduced annual incident costs from ₦2M to ₦950k was more influential than any risk rating in securing management commitment to the control program.
+Operational leadership often responds strongly to financial and service-impact evidence alongside risk scores. Showing that preventive controls reduced annual incident costs from ₦2M to ₦950k was more influential than any risk rating in securing management commitment to the control program.
 
 **6. Business continuity planning cannot be deferred**
 BCM was consistently deprioritised in favour of more immediate operational concerns. A single significant disruption - weather event, road closure, supplier failure - demonstrated the cost of under-investment in BCM documentation and became the catalyst for formalising recovery plans.
@@ -241,7 +247,7 @@ BCM was consistently deprioritised in favour of more immediate operational conce
 
 1. **Agricultural risk is inherently unpredictable** - Weather and climate risks are scored based on historical patterns but cannot fully account for unprecedented events. Climate change is increasing the frequency and severity of weather-related agricultural disruptions beyond historical baselines.
 2. **Vendor scores are point-in-time** - Vendor performance changes. A vendor rated Low Risk today can deteriorate rapidly due to financial distress, management changes, or supply chain disruptions of their own. Continuous monitoring is essential.
-3. **Qualitative scoring only** - Risk scores reflect professional judgement informed by 5 years of operational experience. They are not derived from actuarial models or quantitative loss data beyond the incident cost figures cited.
+3. **Qualitative scoring only** - Risk scores reflect professional judgement informed by the operational experience represented in the case study. They are not derived from actuarial models or quantitative loss data beyond the incident cost figures cited.
 4. **32 risks does not mean 32 is complete** - The risks documented were identified through structured assessment. Emerging risks - new regulatory requirements, new product lines, market expansion - would require a new assessment cycle.
 5. **No integration with operational systems** - The dashboard is manually updated from Excel data. It does not connect to procurement, inventory, or logistics systems in real time.
 6. **BCM has not been tested** - Business continuity plans referenced in the BCM risk category have been documented but not formally tested through tabletop exercises or live rehearsals as of the assessment date.
