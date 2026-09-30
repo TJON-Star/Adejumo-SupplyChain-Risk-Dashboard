@@ -25,7 +25,7 @@ Adejumo Agro Group operates a multi-site agricultural enterprise across 3 farm s
 This dashboard was built to give operational and executive leadership visibility into the full risk landscape of a physical, multi-site business. It tracks **32 risks across 8 categories**, covering likelihood, impact, treatment status, and control ownership across the entire operation.
 
 Key outcomes from the risk management program this dashboard supports:
-- Annual incident costs reduced from ₦2M to ₦950k in the case-study dataset, a 52.5% reduction
+- Annual incident costs for 52.5% reduction
 - Vendor ecosystem risk reduced through structured scoring and quarterly performance reviews
 - 100% of required compliance evidence delivered ahead of audit deadlines across two audit cycles in the case-study dataset
 - 90% post-training pass rate across 12+ compliance training topics in the case-study dataset
