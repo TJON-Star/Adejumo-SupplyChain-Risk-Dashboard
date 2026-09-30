@@ -2,7 +2,7 @@
 
 > *32 risks · 8 categories · portfolio case study based on operational risk experience across farms, logistics, and vendors.*
 
-![Dashboard Preview](Supply%20chain%20%26%20operational%20risk%20dashboard.jpeg)
+![Dashboard Preview](Screenshot_30-9-2026_15509_.jpeg)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]()
 [![Made with Power BI](https://img.shields.io/badge/Tool-Power%20BI-orange)]()
@@ -192,9 +192,8 @@ Business continuity risk remains the area requiring the most attention - formal 
 
 | File | Description |
 |---|---|
-| `Supply chain & operational risk dashboard.jpeg` | Full supply chain risk overview |
-| `Vendor Risk.jpeg` | Vendor risk exposure and supplier scoring |
-| `Operational risk and supply chain overview.jpeg` | Operational risk summary |
+| `Screenshot_30-9-2026_15509_.jpeg` | Full dashboard overview: KPI strip, risk heat map, category breakdown, treatment status, risk score distribution, incident cost reduction, vendor risk scoring matrix, and risk register |
+| `Screenshot_30-9-2026_155053_.jpeg` | Close-up of the Operational & Supply Chain Risk Register |
 | Live GitHub Pages dashboard | Open the deployed interactive dashboard |
 
 ---
@@ -208,8 +207,8 @@ The methodology demonstrates how an operational risk practitioner can structure 
 ## 🚀 How to Use
 
 1. Open the deployed GitHub Pages dashboard for the interactive view
-2. Review the `Operational risk and supply chain overview.jpeg` for a snapshot of risk coverage
-3. Browse `Vendor Risk.jpeg` for the vendor scoring matrix
+2. Review `Screenshot_30-9-2026_15509_.jpeg` for a full snapshot of risk coverage, KPIs, and the vendor scoring matrix
+3. Browse `Screenshot_30-9-2026_155053_.jpeg` for a closer look at the full risk register
 4. Use README descriptions alongside visuals to understand risk tracking methodology
 
 ---
