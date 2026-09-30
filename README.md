@@ -195,7 +195,7 @@ Business continuity risk remains the area requiring the most attention - formal 
 | `Supply chain & operational risk dashboard.jpeg` | Full supply chain risk overview |
 | `Vendor Risk.jpeg` | Vendor risk exposure and supplier scoring |
 | `Operational risk and supply chain overview.jpeg` | Operational risk summary |
-| `adejumo_supply_chain_risk_dashboard.html` | Open in browser for interactive dashboard |
+| Live GitHub Pages dashboard | Open the deployed interactive dashboard |
 
 ---
 
