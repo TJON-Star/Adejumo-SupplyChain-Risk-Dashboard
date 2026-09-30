@@ -300,12 +300,12 @@
   <!-- HEADER -->
   <div class="header">
     <div class="header-left">
-      <div class="org-tag">Adejumo Agro Group // GRC Division</div>
+      <div class="org-tag">Adejumo Agro Group // Operational Risk Case Study</div>
       <div class="dash-title">Supply Chain & Operational Risk Dashboard</div>
-      <div class="dash-sub">3 farms · 2 operational sites · 1 central warehouse · 27 employees · 20–50 active vendors</div>
+      <div class="dash-sub">Portfolio case study · 3 farms · 2 operational sites · 1 central warehouse · 20–50 active vendors</div>
     </div>
     <div class="header-right">
-      <span class="header-badge badge-conf">Confidential</span>
+      <span class="header-badge badge-conf">Portfolio Case Study</span>
       <span class="header-badge badge-period">Period: FY 2020–2024</span>
       <span class="header-badge badge-conf" style="background:rgba(76,175,130,0.1);color:#5fc898;border-color:rgba(76,175,130,0.3);">GRC Lead: Taiwo Johnson</span>
     </div>
@@ -351,12 +351,12 @@
     </div>
     <div class="kpi kpi-critical">
       <div class="kpi-label">Critical</div>
-      <div class="kpi-value" id="kCrit" style="color:var(--critical);">6</div>
+      <div class="kpi-value" id="kCrit" style="color:var(--critical);">2</div>
       <div class="kpi-sub">act immediately</div>
     </div>
     <div class="kpi kpi-high">
       <div class="kpi-label">High</div>
-      <div class="kpi-value" id="kHigh" style="color:var(--high);">10</div>
+      <div class="kpi-value" id="kHigh" style="color:var(--high);">15</div>
       <div class="kpi-sub">remediate within 30 days</div>
     </div>
     <div class="kpi kpi-open">
@@ -366,8 +366,8 @@
     </div>
     <div class="kpi kpi-incident">
       <div class="kpi-label">Incident Reduction</div>
-      <div class="kpi-value" style="color:var(--low);">35%</div>
-      <div class="kpi-sub delta-good">↓ via preventive controls</div>
+      <div class="kpi-value" style="color:var(--low);">52.5%</div>
+      <div class="kpi-sub delta-good">↓ annual incident cost</div>
     </div>
   </div>
 
@@ -453,7 +453,7 @@
 
   <div class="footer">
     <div class="footer-left">Adejumo Agro Group // GRC Division // FY 2020–2024 // v1.0</div>
-    <div class="footer-right">Framework: ISO 31000 · NIST RMF · BCM Best Practice</div>
+    <div class="footer-right">Portfolio case study · Framework: ISO 31000 · Business Continuity Management</div>
   </div>
 
 </div>
@@ -461,17 +461,17 @@
 <script>
 const risks = [
   // OPERATIONAL
-  {id:'OP-001',desc:'Equipment breakdown disrupts production',cat:'Operational',l:4,i:4,score:16,rating:'Critical',status:'In Progress',owner:'Operations Manager',treatment:'Preventive maintenance schedule; backup equipment procurement'},
+  {id:'OP-001',desc:'Equipment breakdown disrupts production',cat:'Operational',l:4,i:4,score:16,rating:'High',status:'In Progress',owner:'Operations Manager',treatment:'Preventive maintenance schedule; backup equipment procurement'},
   {id:'OP-002',desc:'Staff shortages during peak harvest season',cat:'Operational',l:3,i:4,score:12,rating:'High',status:'In Progress',owner:'HR Lead',treatment:'Seasonal staffing plan; cross-training program'},
   {id:'OP-003',desc:'Process failures in production workflow',cat:'Operational',l:3,i:3,score:9,rating:'Medium',status:'Monitor',owner:'Operations Manager',treatment:'SOP documentation; process audit quarterly'},
-  {id:'OP-004',desc:'Production disruption from site incident',cat:'Operational',l:2,i:5,score:10,rating:'High',status:'Open',owner:'Site Manager',treatment:'Incident response plan; site resilience review'},
+  {id:'OP-004',desc:'Production disruption from site incident',cat:'Operational',l:2,i:5,score:10,rating:'Medium',status:'Open',owner:'Site Manager',treatment:'Incident response plan; site resilience review'},
   // SUPPLY CHAIN
   {id:'SC-001',desc:'Vendor delays impact planting/harvest cycles',cat:'Supply Chain',l:4,i:5,score:20,rating:'Critical',status:'Open',owner:'Procurement Lead',treatment:'Dual sourcing strategy; SLA enforcement'},
-  {id:'SC-002',desc:'Single source supplier dependency — fertilizer',cat:'Supply Chain',l:3,i:5,score:15,rating:'Critical',status:'In Progress',owner:'Procurement Lead',treatment:'Identify 2 alternative suppliers per critical input'},
+  {id:'SC-002',desc:'Single source supplier dependency — fertilizer',cat:'Supply Chain',l:3,i:5,score:15,rating:'High',status:'In Progress',owner:'Procurement Lead',treatment:'Identify 2 alternative suppliers per critical input'},
   {id:'SC-003',desc:'Fertilizer shortages during growing season',cat:'Supply Chain',l:3,i:4,score:12,rating:'High',status:'Open',owner:'Procurement Lead',treatment:'Strategic stockpiling; forward purchasing contracts'},
   {id:'SC-004',desc:'Seed shortages affecting planting schedule',cat:'Supply Chain',l:2,i:4,score:8,rating:'Medium',status:'Monitor',owner:'Agronomy Lead',treatment:'Pre-season seed procurement; seed bank maintenance'},
   // TRANSPORTATION
-  {id:'TR-001',desc:'Delivery delays to market or distribution points',cat:'Transportation',l:4,i:4,score:16,rating:'Critical',status:'Open',owner:'Logistics Coordinator',treatment:'Route diversification; backup transport agreements'},
+  {id:'TR-001',desc:'Delivery delays to market or distribution points',cat:'Transportation',l:4,i:4,score:16,rating:'High',status:'Open',owner:'Logistics Coordinator',treatment:'Route diversification; backup transport agreements'},
   {id:'TR-002',desc:'Fuel price volatility increases operational cost',cat:'Transportation',l:4,i:3,score:12,rating:'High',status:'Monitor',owner:'Finance Lead',treatment:'Fuel hedging; efficient route planning'},
   {id:'TR-003',desc:'Vehicle downtime reduces delivery capacity',cat:'Transportation',l:3,i:3,score:9,rating:'Medium',status:'In Progress',owner:'Fleet Manager',treatment:'Preventive vehicle maintenance schedule'},
   {id:'TR-004',desc:'Route disruption from road or security issues',cat:'Transportation',l:2,i:4,score:8,rating:'Medium',status:'Open',owner:'Logistics Coordinator',treatment:'Alternative route mapping; security briefings'},
@@ -482,21 +482,21 @@ const risks = [
   {id:'IN-004',desc:'Spoilage of perishable produce in storage',cat:'Inventory',l:3,i:4,score:12,rating:'High',status:'Open',owner:'Warehouse Manager',treatment:'Cold chain management; storage condition monitoring'},
   // AGRICULTURAL
   {id:'AG-001',desc:'Adverse weather impact on crop yield',cat:'Agricultural',l:4,i:5,score:20,rating:'Critical',status:'Open',owner:'Agronomy Lead',treatment:'Weather monitoring; crop insurance; irrigation backup'},
-  {id:'AG-002',desc:'Pest outbreak destroys standing crop',cat:'Agricultural',l:3,i:5,score:15,rating:'Critical',status:'In Progress',owner:'Agronomy Lead',treatment:'Integrated pest management; early detection monitoring'},
-  {id:'AG-003',desc:'Disease outbreak spreads across farm sites',cat:'Agricultural',l:2,i:5,score:10,rating:'High',status:'Open',owner:'Agronomy Lead',treatment:'Disease surveillance; quarantine protocols per site'},
+  {id:'AG-002',desc:'Pest outbreak destroys standing crop',cat:'Agricultural',l:3,i:5,score:15,rating:'High',status:'In Progress',owner:'Agronomy Lead',treatment:'Integrated pest management; early detection monitoring'},
+  {id:'AG-003',desc:'Disease outbreak spreads across farm sites',cat:'Agricultural',l:2,i:5,score:10,rating:'Medium',status:'Open',owner:'Agronomy Lead',treatment:'Disease surveillance; quarantine protocols per site'},
   {id:'AG-004',desc:'Yield reduction below breakeven threshold',cat:'Agricultural',l:3,i:4,score:12,rating:'High',status:'Monitor',owner:'Farm Director',treatment:'Diversified crop portfolio; yield benchmarking'},
   // COMPLIANCE
   {id:'CO-001',desc:'Documentation gaps expose organisation to regulatory action',cat:'Compliance',l:3,i:4,score:12,rating:'High',status:'Closed',owner:'GRC Lead',treatment:'Document control system implemented; quarterly review'},
   {id:'CO-002',desc:'Audit findings from regulatory inspections',cat:'Compliance',l:2,i:4,score:8,rating:'Medium',status:'Closed',owner:'GRC Lead',treatment:'Pre-audit readiness checklist; findings tracker'},
-  {id:'CO-003',desc:'Policy violations by staff or contractors',cat:'Compliance',l:2,i:3,score:6,rating:'Low',status:'Monitor',owner:'HR Lead',treatment:'Policy awareness training; annual sign-off'},
+  {id:'CO-003',desc:'Policy violations by staff or contractors',cat:'Compliance',l:2,i:3,score:6,rating:'Medium',status:'Monitor',owner:'HR Lead',treatment:'Policy awareness training; annual sign-off'},
   // BUSINESS CONTINUITY
-  {id:'BC-001',desc:'Site disruption renders farm or warehouse inoperable',cat:'Business Continuity',l:2,i:5,score:10,rating:'High',status:'In Progress',owner:'COO',treatment:'BCP documented; alternate site identified'},
+  {id:'BC-001',desc:'Site disruption renders farm or warehouse inoperable',cat:'Business Continuity',l:2,i:5,score:10,rating:'Medium',status:'In Progress',owner:'COO',treatment:'BCP documented; alternate site identified'},
   {id:'BC-002',desc:'Power outages halt operations across sites',cat:'Business Continuity',l:4,i:3,score:12,rating:'High',status:'In Progress',owner:'Facilities Lead',treatment:'Generator backup at all 3 farm sites; fuel reserve policy'},
-  {id:'BC-003',desc:'Critical supplier failure stops production inputs',cat:'Business Continuity',l:2,i:5,score:10,rating:'High',status:'Open',owner:'Procurement Lead',treatment:'Supplier diversification; emergency procurement protocol'},
+  {id:'BC-003',desc:'Critical supplier failure stops production inputs',cat:'Business Continuity',l:2,i:5,score:10,rating:'Medium',status:'Open',owner:'Procurement Lead',treatment:'Supplier diversification; emergency procurement protocol'},
   // THIRD PARTY
   {id:'TP-001',desc:'Vendor performance failure impacts operations',cat:'Third Party',l:3,i:4,score:12,rating:'High',status:'In Progress',owner:'Procurement Lead',treatment:'Vendor scorecards; quarterly performance reviews'},
   {id:'TP-002',desc:'Supplier concentration risk — single market dependency',cat:'Third Party',l:3,i:4,score:12,rating:'High',status:'Open',owner:'Procurement Lead',treatment:'Market diversification strategy; alternative buyer list'},
-  {id:'TP-003',desc:'Contract compliance failures by vendors',cat:'Third Party',l:2,i:3,score:6,rating:'Low',status:'Closed',owner:'Legal / Procurement',treatment:'Contract management register; renewal alerts'},
+  {id:'TP-003',desc:'Contract compliance failures by vendors',cat:'Third Party',l:2,i:3,score:6,rating:'Medium',status:'Closed',owner:'Legal / Procurement',treatment:'Contract management register; renewal alerts'},
   {id:'TP-004',desc:'Vendor security maturity insufficient for data sharing',cat:'Third Party',l:2,i:4,score:8,rating:'Medium',status:'Open',owner:'GRC Lead',treatment:'Vendor security questionnaire; annual reassessment'},
   {id:'OP-005',desc:'Communication breakdown across multi-site operations',cat:'Operational',l:3,i:3,score:9,rating:'Medium',status:'In Progress',owner:'Operations Manager',treatment:'Communication protocol; site leads WhatsApp coordination'},
   {id:'SC-005',desc:'Market price collapse reduces revenue per harvest',cat:'Supply Chain',l:3,i:4,score:12,rating:'High',status:'Monitor',owner:'Farm Director',treatment:'Forward contracts; market intelligence monitoring'},
@@ -618,7 +618,7 @@ new Chart(document.getElementById('catBar'),{
 // DONUT
 new Chart(document.getElementById('donutChart'),{
   type:'doughnut',
-  data:{labels:['Open','In Progress','Monitor','Closed'],datasets:[{data:[14,10,4,4],backgroundColor:['#e05252','#e8923a','#5b8af5','#4caf82'],borderColor:'#181c27',borderWidth:2,hoverOffset:4}]},
+  data:{labels:['Open','In Progress','Monitor','Closed'],datasets:[{data:[2,15,15,0],backgroundColor:['#e05252','#e8923a','#5b8af5','#4caf82'],borderColor:'#181c27',borderWidth:2,hoverOffset:4}]},
   options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>`${c.label}: ${c.raw} risks`}}}}
 });
 
