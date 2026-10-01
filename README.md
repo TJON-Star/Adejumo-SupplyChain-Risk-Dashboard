@@ -180,7 +180,7 @@ The following KRIs are tracked monthly to provide early warning of risk deterior
 
 As of the assessment date, the Adejumo Agro Group risk posture is rated Amber. The most significant risk concentration sits in the supply chain and vendor domains - reflecting the inherent dependency of agricultural operations on reliable input supply and logistics networks.
 
-The preventive control program implemented over the assessment period produced measurable results: annual incident costs reduced from ₦2M to ₦950k, representing a 52.5% reduction. The vendor risk scoring program and quarterly performance reviews have reduced single-source dependency and improved supplier accountability.
+The preventive control program implemented over the assessment period produced measurable results: annual incident costs representing a 52.5% reduction. The vendor risk scoring program and quarterly performance reviews have reduced single-source dependency and improved supplier accountability.
 
 Business continuity risk remains the area requiring the most attention - formal BCM documentation and tested recovery procedures are the priority for the next assessment period.
 
