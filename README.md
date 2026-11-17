@@ -12,8 +12,8 @@
 ---
 
 ## 👤 Author
-**Taiwo Johnson** | GRC & Operational Risk Specialist
-Sector: Agricultural Supply Chain | Fintech Operations
+**Taiwo Johnson** | Logistics & Operations Professional | Operational Risk Portfolio
+Sector: Agricultural Supply Chain | Logistics & Procurement Operations
 Tools: Power BI · Excel · ISO 31000 · NIST Cybersecurity Framework · Supply Chain Risk Management
 
 ---
