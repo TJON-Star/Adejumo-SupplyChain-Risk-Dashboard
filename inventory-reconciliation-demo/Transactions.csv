@@ -1,0 +1,10 @@
+TransactionID,TransactionDate,SKU,LocationID,TransactionType,RecordType,QtyIn,QtyOut,Reference
+OP-RM001,2026-01-01,RM001,LOC01,Opening Balance,Opening,500,0,Opening setup
+TX-001,2026-01-05,RM001,LOC01,Receipt,Movement,100,0,GRN-001
+TX-002,2026-01-08,RM001,LOC01,Issue,Movement,0,80,ISS-001
+TX-003,2026-01-12,RM001,LOC01,Issue,Movement,0,60,ISS-002
+OP-PK001,2026-01-01,PK001,LOC01,Opening Balance,Opening,200,0,Opening setup
+TX-004,2026-01-07,PK001,LOC01,Receipt,Movement,50,0,GRN-002
+TX-005,2026-01-15,PK001,LOC01,Issue,Movement,0,40,ISS-003
+OP-FG001,2026-01-01,FG001,LOC03,Opening Balance,Opening,100,0,Opening setup
+TX-006,2026-01-20,FG001,LOC03,Issue,Movement,0,25,DISP-001
