@@ -19,7 +19,7 @@ The demonstration covers:
 
 ## Data model
 
-Import the CSV files in this folder into Power BI Desktop.
+Import the five CSV files in this folder into Power BI Desktop. These repository CSVs are a compact, illustrative sample for quick inspection. The downloadable Excel workbook created in this conversation contains the larger simulated dataset; do not combine the compact CSV sample with the workbook tables in one model.
 
 | Table | Grain | Purpose |
 |---|---|---|
@@ -89,7 +89,7 @@ Remote reconciliation depends on client-provided source records and physical cou
 - `ActionLog.csv`
 - `PowerBI_Measures.dax`
 
-The companion Excel workbook can be downloaded from the ChatGPT conversation where this project was created. This repository currently contains the Power BI import data and model instructions.
+The companion Excel workbook can be downloaded from the ChatGPT conversation where this project was created. The CSVs committed here are compact sample extracts, not a byte-for-byte export of that workbook. For a single consistent Power BI model, import either the workbook's five full tables or the five repository CSV samples—not both.
 
 ## Author
 
