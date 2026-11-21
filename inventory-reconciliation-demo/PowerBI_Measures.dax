@@ -1,0 +1,52 @@
+-- Agro-Processing Inventory Reconciliation Demonstration
+-- All measures are intended for the simulated portfolio dataset.
+-- Physical count KPIs exclude rows that are not marked Counted.
+
+Book Quantity (Counted) =
+CALCULATE(
+    SUM(PhysicalCounts[BookQtyAtCount]),
+    PhysicalCounts[CountStatus] = "Counted"
+)
+
+Physical Quantity =
+CALCULATE(
+    SUM(PhysicalCounts[PhysicalQty]),
+    PhysicalCounts[CountStatus] = "Counted"
+)
+
+Net Variance Qty =
+[Physical Quantity] - [Book Quantity (Counted)]
+
+Absolute Variance Qty =
+CALCULATE(
+    SUMX(PhysicalCounts, ABS(PhysicalCounts[VarianceQty])),
+    PhysicalCounts[CountStatus] = "Counted"
+)
+
+Counted Lines =
+CALCULATE(
+    COUNTROWS(PhysicalCounts),
+    PhysicalCounts[CountStatus] = "Counted"
+)
+
+Variance Lines =
+CALCULATE(
+    COUNTROWS(PhysicalCounts),
+    PhysicalCounts[CountStatus] = "Counted",
+    PhysicalCounts[VarianceQty] <> 0
+)
+
+Variance Line Rate =
+DIVIDE([Variance Lines], [Counted Lines], 0)
+
+Open Actions =
+CALCULATE(
+    COUNTROWS(ActionLog),
+    ActionLog[ActionStatus] <> "Closed"
+)
+
+Variance Value (NGN) =
+CALCULATE(
+    SUM(PhysicalCounts[VarianceValue_NGN]),
+    PhysicalCounts[CountStatus] = "Counted"
+)
