@@ -1,0 +1,50 @@
+/* AGRO INVENTORY RECONCILIATION — POWER BI DAX V2
+Simulated portfolio data. See WORKBOOK_AUDIT_FINDINGS.md before use.
+Model: Items and Locations filter all fact tables; Calendar filters each date fact.
+*/
+Counted Lines =
+CALCULATE(COUNTROWS(PhysicalCounts), PhysicalCounts[CountStatus]="Counted")
+
+Pending Count Lines =
+CALCULATE(COUNTROWS(PhysicalCounts), PhysicalCounts[CountStatus]="Pending")
+
+Variance Lines =
+CALCULATE(COUNTROWS(PhysicalCounts), PhysicalCounts[CountStatus]="Counted", PhysicalCounts[VarianceQty]<>0)
+
+Variance Line Rate = DIVIDE([Variance Lines],[Counted Lines])
+
+Signed Variance Value (NGN) =
+CALCULATE(SUM(PhysicalCounts[VarianceValue_NGN]),PhysicalCounts[CountStatus]="Counted")
+
+Absolute Variance Value (NGN) =
+CALCULATE(SUMX(FILTER(PhysicalCounts,PhysicalCounts[CountStatus]="Counted"),ABS(PhysicalCounts[VarianceValue_NGN])))
+
+Open Action Records = CALCULATE(COUNTROWS(ActionLog),ActionLog[ActionStatus]="Open")
+In Progress Action Records = CALCULATE(COUNTROWS(ActionLog),ActionLog[ActionStatus]="In Progress")
+Closed Action Records = CALCULATE(COUNTROWS(ActionLog),ActionLog[ActionStatus]="Closed")
+Action Records = COUNTROWS(ActionLog)
+Action Closure Rate = DIVIDE([Closed Action Records],[Action Records])
+
+Receipts (Qty) =
+CALCULATE(SUM(Transactions[QtyIn]),Transactions[RecordType]="Movement",Transactions[TransactionType]="Receipt")
+
+Issues (Qty) =
+CALCULATE(SUM(Transactions[QtyOut]),Transactions[RecordType]="Movement",Transactions[TransactionType]="Issue")
+
+Transfer In (Qty) =
+CALCULATE(SUM(Transactions[QtyIn]),Transactions[RecordType]="Movement",Transactions[TransactionType]="Transfer In")
+
+Transfer Out (Qty) =
+CALCULATE(SUM(Transactions[QtyOut]),Transactions[RecordType]="Movement",Transactions[TransactionType]="Transfer Out")
+
+Transfer Net (Qty) = [Transfer In (Qty)]-[Transfer Out (Qty)]
+
+Transactions After Count Date =
+VAR CutoffDate=MAX(PhysicalCounts[CountDate])
+RETURN CALCULATE(COUNTROWS(Transactions),FILTER(ALL(Transactions),Transactions[TransactionDate]>CutoffDate))
+
+Negative Book Balance Lines =
+CALCULATE(COUNTROWS(PhysicalCounts),PhysicalCounts[BookQtyAtCount]<0)
+
+/* Never aggregate unlike UOMs in an unfiltered quantity KPI.
+   Transfer Net is an exception indicator; transfer-level pairing is required. */
