@@ -1,0 +1,13 @@
+SKU,ItemName,Category,UOM,Department,Status,ReorderPoint,SafetyStock
+RM001,Fresh Fruit Bunches,Raw Material,kg,Palm Oil,Active,100,25
+RM002,Crude Palm Oil,Raw Material,litre,Palm Oil,Active,100,25
+RM003,Palm Kernel,Raw Material,kg,Palm Oil,Active,100,25
+PK001,25L Empty Jerrycan,Packaging,unit,Palm Oil,Active,100,25
+PK002,1L Bottle,Packaging,unit,Palm Oil,Active,100,25
+PK003,Bottle Cap,Packaging,unit,Palm Oil,Active,100,25
+CON001,Processing Lubricant,Consumable,litre,Production,Active,100,25
+CON002,Cleaning Chemical,Consumable,litre,Production,Active,100,25
+FG001,Packaged Palm Oil 25L,Finished Good,jerrycan,Palm Oil,Active,40,10
+FG002,Packaged Palm Oil 1L,Finished Good,bottle,Palm Oil,Active,40,10
+LV001,Livestock Feed,Consumable,kg,Piggery,Active,100,25
+LV002,Veterinary Supplies,Consumable,pack,Piggery,Active,100,25
