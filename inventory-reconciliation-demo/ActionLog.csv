@@ -1,0 +1,3 @@
+ActionID,RaisedDate,SKU,LocationID,VarianceQty,IssueType,ActionStatus,ActionOwner,NextAction,ClosureEvidence
+ACT-001,2026-03-31,RM001,LOC01,-10,Investigate source documents,Open,Store Supervisor,Recount and trace receipts/issues,
+ACT-002,2026-03-31,FG001,LOC03,4,Investigate source documents,In Progress,Warehouse Supervisor,Review production output and dispatch records,
