@@ -1,52 +1,68 @@
--- Agro-Processing Inventory Reconciliation Demonstration
--- All measures are intended for the simulated portfolio dataset.
--- Physical count KPIs exclude rows that are not marked Counted.
-
-Book Quantity (Counted) =
-CALCULATE(
-    SUM(PhysicalCounts[BookQtyAtCount]),
-    PhysicalCounts[CountStatus] = "Counted"
-)
-
-Physical Quantity =
-CALCULATE(
-    SUM(PhysicalCounts[PhysicalQty]),
-    PhysicalCounts[CountStatus] = "Counted"
-)
-
-Net Variance Qty =
-[Physical Quantity] - [Book Quantity (Counted)]
-
-Absolute Variance Qty =
-CALCULATE(
-    SUMX(PhysicalCounts, ABS(PhysicalCounts[VarianceQty])),
-    PhysicalCounts[CountStatus] = "Counted"
-)
-
+/* Agro inventory demo measures. Simulated portfolio data. */
 Counted Lines =
-CALCULATE(
-    COUNTROWS(PhysicalCounts),
-    PhysicalCounts[CountStatus] = "Counted"
-)
+CALCULATE ( COUNTROWS ( PhysicalCounts ), PhysicalCounts[CountStatus] = "Counted" )
+
+Pending Count Lines =
+CALCULATE ( COUNTROWS ( PhysicalCounts ), PhysicalCounts[CountStatus] = "Pending" )
 
 Variance Lines =
-CALCULATE(
-    COUNTROWS(PhysicalCounts),
+CALCULATE (
+    COUNTROWS ( PhysicalCounts ),
     PhysicalCounts[CountStatus] = "Counted",
     PhysicalCounts[VarianceQty] <> 0
 )
 
-Variance Line Rate =
-DIVIDE([Variance Lines], [Counted Lines], 0)
+Variance Line Rate = DIVIDE ( [Variance Lines], [Counted Lines] )
 
-Open Actions =
-CALCULATE(
-    COUNTROWS(ActionLog),
-    ActionLog[ActionStatus] <> "Closed"
+Book Quantity (Counted Lines) =
+CALCULATE ( SUM ( PhysicalCounts[BookQtyAtCount] ), PhysicalCounts[CountStatus] = "Counted" )
+
+Physical Quantity (Counted Lines) =
+CALCULATE ( SUM ( PhysicalCounts[PhysicalQty] ), PhysicalCounts[CountStatus] = "Counted" )
+
+/* Do not show unfiltered quantity totals: UOMs are mixed (kg, litres, bags, cartons, etc.). */
+Signed Variance Value (NGN) =
+CALCULATE ( SUM ( PhysicalCounts[VarianceValue_NGN] ), PhysicalCounts[CountStatus] = "Counted" )
+
+Absolute Variance Value (NGN) =
+CALCULATE (
+    SUMX (
+        FILTER ( PhysicalCounts, PhysicalCounts[CountStatus] = "Counted" ),
+        ABS ( PhysicalCounts[VarianceValue_NGN] )
+    )
 )
 
-Variance Value (NGN) =
-CALCULATE(
-    SUM(PhysicalCounts[VarianceValue_NGN]),
-    PhysicalCounts[CountStatus] = "Counted"
+Open Action Records =
+CALCULATE ( COUNTROWS ( ActionLog ), ActionLog[ActionStatus] <> "Closed" )
+
+Closed Action Records =
+CALCULATE ( COUNTROWS ( ActionLog ), ActionLog[ActionStatus] = "Closed" )
+
+Action Records = COUNTROWS ( ActionLog )
+Action Closure Rate = DIVIDE ( [Closed Action Records], [Action Records] )
+
+Distinct Counted SKUs =
+CALCULATE ( DISTINCTCOUNT ( PhysicalCounts[SKU] ), PhysicalCounts[CountStatus] = "Counted" )
+
+/* Opening balances are not period movements. */
+Receipts (Qty) =
+CALCULATE (
+    SUM ( Transactions[QtyIn] ),
+    Transactions[RecordType] = "Movement",
+    Transactions[TransactionType] = "Receipt"
 )
+
+Issues (Qty) =
+CALCULATE (
+    SUM ( Transactions[QtyOut] ),
+    Transactions[RecordType] = "Movement",
+    Transactions[TransactionType] = "Issue"
+)
+
+Movement Net (Qty; mixed UOM) =
+CALCULATE (
+    SUM ( Transactions[QtyIn] ) - SUM ( Transactions[QtyOut] ),
+    Transactions[RecordType] = "Movement"
+)
+
+/* Use movement quantities only at SKU/UOM level; do not aggregate unlike units. */
