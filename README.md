@@ -188,6 +188,12 @@ Business continuity risk remains the area requiring the most attention - formal 
 
 ---
 
+## 📦 Inventory Reconciliation Demonstration
+
+A separate agro-processing inventory reconciliation demonstration is available in [the inventory project folder](inventory-reconciliation-demo/README.md), including simulated source data, DAX measures and a [dashboard preview](inventory-reconciliation-demo/index.html). All records are fictional and intended for portfolio demonstration only.
+
+---
+
 ## 🖼️ Dashboard Visuals
 
 | File | Description |
