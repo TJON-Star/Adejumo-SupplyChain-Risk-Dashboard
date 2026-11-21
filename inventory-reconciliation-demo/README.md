@@ -49,6 +49,10 @@ Create one-to-many, single-direction relationships:
 
 Only records with CountStatus = "Counted" should be included in confirmed physical-count KPIs. A variance is an exception requiring investigation; it is not, by itself, proof of theft, loss or fraud.
 
+## Interactive visual dashboard
+
+Open the [Agro-Processing Inventory Control dashboard](./index.html) for the visual portfolio walkthrough. It includes KPI cards, variance charts, location comparisons, movement profile and priority data-quality findings. The dashboard is a static interactive preview built from the simulated workbook; it is not a native Power BI report or live data connection.
+
 ## Recommended report pages
 
 1. **Inventory Overview:** count completion, variance lines, variance rate and open actions.
